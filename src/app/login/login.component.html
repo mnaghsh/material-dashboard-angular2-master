@@ -1,7 +1,6 @@
 <mat-card class="titrCard">
   <h2 style="text-align: center;font-weight: bold;" class="titrLogin">
-    سامانه کارنامه ایمنی و بهداشت مجتمع فولاد مبارکه اصفهان
-  </h2>
+wellcome  </h2>
 </mat-card>
 <div style="  height: 89.9%; background-image: url('../assets/blackboard.jpg');">
 <mat-card class="card">
@@ -9,7 +8,7 @@
 
   </mat-card-header>
 
-  <form [formGroup]="loginForm"  class="center">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="center" (keydown)="keyDownFunction($event)">
     <img class="logoHse full-width"   src="../assets/hseIcon.png">
 
 
@@ -41,9 +40,9 @@
 
 
 
-<!-- 
-    <mat-spinner  class="about" [diameter]="30" *ngIf="commonService.loading==true" >
-    </mat-spinner> -->
+
+    <mat-spinner  class="about" [diameter]="30"  >
+    </mat-spinner>
 
     <!-- <mat-progress-bar *ngIf="commonService.loading==true" mode="indeterminate"></mat-progress-bar> -->
   </form>

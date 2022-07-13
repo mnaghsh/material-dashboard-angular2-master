@@ -1,26 +1,20 @@
-import { Injectable, EventEmitter, Output } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-//import * as XLSX from "xlsx";
-
-import { Subject } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class CommonService {
   results: any[];
   loading: boolean;
   activeUser: any;
-
-  constructor(private snackBar: MatSnackBar,) { }
+//constructor(pu) { }
   showEventMessage(message, duration = 3000, type?) {
 
-    this.snackBar.open(message, '', {
-      direction: 'rtl',
-      duration: duration,
-      panelClass: type ? type : 'background-color:red!important'
-    });
+    // this.snackBar.open(message, '', {
+    //   direction: 'rtl',
+    //   duration: duration,
+    //   panelClass: type ? type : 'background-color:red!important'
+    // });
   }
   exportToExcel(tableId: string, name?: string) {
     let myDate = new Date().toLocaleDateString('fa-IR');
@@ -59,3 +53,4 @@ export class CommonService {
 }
 
 }
+

@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthenticationService {
   isLoggedIn:boolean
+  token = "";
   constructor() {
   }
   public wasLoggedIn(){
@@ -13,6 +14,7 @@ export class AuthenticationService {
   }
   public wasLoggedOut(){
     this.isLoggedIn=false
+    this.token = "";
   }
   public loginStatus(){
     return this.isLoggedIn;

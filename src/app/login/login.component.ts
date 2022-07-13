@@ -1,11 +1,12 @@
+import { LoginService } from './../service/login/login.service';
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
-import { HttpHeaders } from '@angular/common/http';
-import { AuthenticationService } from 'app/service/authentication/authentication.service';
-import { ConfigService } from 'app/service/config.service';
 import { CommonService } from 'app/service/common.service';
+import { ConfigService } from 'app/service/config.service';
+import { AuthenticationService } from 'app/service/authentication/authentication.service';
+
 
 
 
@@ -26,11 +27,12 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder,
-  //  private auth: AuthenticationService,
-   // private configService: ConfigService,
-   // public commonService: CommonService,
-  //  private myRoute: Router
-   ) {
+    private loginService: LoginService,
+    private auth: AuthenticationService,
+    private configService: ConfigService,
+    public commonService: CommonService,
+    private myRoute: Router
+  ) {
 
     this.loginForm = fb.group({
       username: ['', Validators.required],
@@ -40,51 +42,56 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.connectToServer = true
+    this.loginService;
+
+
+  }
+
+  public login() {
+    //this.myRoute.navigate(['dashboard']);
+    if (this.loginForm.valid) {
+      let body = {
+        username: this.loginForm.value.username,
+        password: this.loginForm.value.password,
+      }
+      this.commonService.loading = true;
+      this.configService.post("smaritAuth/loginByPassword", body).subscribe(
+        (data: any) => {
+          console.log(data)
+          debugger;
+          if (data == null) {
+
+            this.commonService.showEventMessage("نام کاربری یا کلمه عبور اشتباه است.")
+
+            this.commonService.loading = false;
+            return;
+          }
+          debugger
+          this.commonService.loading = false;
+          this.commonService.activeUser = (data)
+          if (data.token) {
+            this.auth.wasLoggedIn();
+            this.auth.token = data.token
+            this.myRoute.navigate(['dashboard']);
+            console.log('this.auth.token', this.auth.token)
+          }
+        },
+        (error) => {
+          this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع می باشد")
+
+        }
+      )
+    }
+  }
 
 
 
-   }
 
-  // public login() {
-  //   this.myRoute.navigate(['menu']);
-  //   if (this.loginForm.valid) {
-  //     let body = {
-  //       userName: this.loginForm.value.username,
-  //       password: this.loginForm.value.password,
-  //     }
-  //     this.commonService.loading = true;
-  //     this.configService.post("Users/Login", body).subscribe(
-  //       (data: any) => {
-  //         if (data == null) {
-
-  //           this.commonService.showEventMessage("نام کاربری یا کلمه عبور اشتباه است.")
-
-  //           this.commonService.loading = false;
-  //           return;
-  //         }
-
-  //         this.commonService.loading = false;
-  //         this.commonService.activeUser = (data)
-  //         this.auth.wasLoggedIn();
-  //         this.myRoute.navigate(['menu']);
-
-  //       },
-  //       (error)=>{
-  //         this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع می باشد")
-
-  //       }
-  //     )
-  //   }
-  // }
-
-
-
-
-  // public keyDownFunction(event) {
-  //   if (event.keyCode === 13) {
-  //     this.login();
-  //   }
-  // }
+  public keyDownFunction(event) {
+    if (event.keyCode === 13) {
+      this.login();
+    }
+  }
 
 
 
