@@ -60,7 +60,7 @@
               <mat-panel-title style="color: rgb(32, 25, 25); margin-top: 15px;">
                 <!-- <i class="fa fa-bug menuIcons" style=" color: white; font-size: 150% !important;" aria-hidden="true">
                 </i> -->
-                <p>projects</p>
+                <p>Projects</p>
               </mat-panel-title>
             </mat-expansion-panel-header>
             <li routerLinkActive="active" *ngFor="let menuItem of projects" class="{{menuItem.class}} nav-item">
@@ -76,10 +76,74 @@
               <mat-panel-title style="color: rgb(32, 25, 25); margin-top: 15px;">
                 <!-- <i class="fa fa-bug menuIcons" style=" color: white; font-size: 150% !important;" aria-hidden="true">
                 </i> -->
-                <p>sensors</p>
+                <p>Sensors</p>
               </mat-panel-title>
             </mat-expansion-panel-header>
             <li routerLinkActive="active" *ngFor="let menuItem of sensors" class="{{menuItem.class}} nav-item">
+                <a class="nav-link" [routerLink]="[menuItem.path]">
+                    <i class="material-icons">{{menuItem.icon}}</i>
+                    <p>{{menuItem.title}}</p>
+                </a>
+            </li>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header class="mat-expansion-panel-header">
+              <mat-panel-title style="color: rgb(32, 25, 25); margin-top: 15px;">
+                <!-- <i class="fa fa-bug menuIcons" style=" color: white; font-size: 150% !important;" aria-hidden="true">
+                </i> -->
+                <p>Collabrations</p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <li routerLinkActive="active" *ngFor="let menuItem of collabrations" class="{{menuItem.class}} nav-item">
+                <a class="nav-link" [routerLink]="[menuItem.path]">
+                    <i class="material-icons">{{menuItem.icon}}</i>
+                    <p>{{menuItem.title}}</p>
+                </a>
+            </li>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header class="mat-expansion-panel-header">
+              <mat-panel-title style="color: rgb(32, 25, 25); margin-top: 15px;">
+                <!-- <i class="fa fa-bug menuIcons" style=" color: white; font-size: 150% !important;" aria-hidden="true">
+                </i> -->
+                <p>Profile</p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <li routerLinkActive="active" *ngFor="let menuItem of profile" class="{{menuItem.class}} nav-item">
+                <a class="nav-link" [routerLink]="[menuItem.path]">
+                    <i class="material-icons">{{menuItem.icon}}</i>
+                    <p>{{menuItem.title}}</p>
+                </a>
+            </li>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header class="mat-expansion-panel-header">
+              <mat-panel-title style="color: rgb(32, 25, 25); margin-top: 15px;">
+                <!-- <i class="fa fa-bug menuIcons" style=" color: white; font-size: 150% !important;" aria-hidden="true">
+                </i> -->
+                <p>Support</p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <li routerLinkActive="active" *ngFor="let menuItem of support" class="{{menuItem.class}} nav-item">
+                <a class="nav-link" [routerLink]="[menuItem.path]">
+                    <i class="material-icons">{{menuItem.icon}}</i>
+                    <p>{{menuItem.title}}</p>
+                </a>
+            </li>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header class="mat-expansion-panel-header">
+              <mat-panel-title style="color: rgb(32, 25, 25); margin-top: 15px;">
+                <!-- <i class="fa fa-bug menuIcons" style=" color: white; font-size: 150% !important;" aria-hidden="true">
+                </i> -->
+                <p>APPS</p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <li routerLinkActive="active" *ngFor="let menuItem of apps" class="{{menuItem.class}} nav-item">
                 <a class="nav-link" [routerLink]="[menuItem.path]">
                     <i class="material-icons">{{menuItem.icon}}</i>
                     <p>{{menuItem.title}}</p>

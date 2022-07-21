@@ -18,6 +18,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ProjectListComponent } from 'app/project-list/project-list.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -32,12 +36,17 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatExpansionModule,
     MatInputModule,
     MatSelectModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatCardModule,
     MatTooltipModule,
+    
   ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
     TableListComponent,
+    ProjectListComponent,
     TypographyComponent,
     IconsComponent,
     MapsComponent,

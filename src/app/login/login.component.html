@@ -14,11 +14,11 @@ wellcome  </h2>
 
 
     <mat-form-field class="full-width">
-      <input matInput type="text" placeholder="نام کاربری" formControlName="username" />
+      <input matInput type="text" placeholder="username" formControlName="username" />
     </mat-form-field>
     <br>
     <mat-form-field class="full-width">
-      <input matInput type="password" placeholder="رمز عبور" formControlName="password" />
+      <input matInput type="password" placeholder="password" formControlName="password" />
     </mat-form-field>
     <br>
 
@@ -28,14 +28,18 @@ wellcome  </h2>
     <br>
     <button style="color: white; background-color: #00338f; border-radius: 10px;" *ngIf="connectToServer" mat-raised-button type="submit">
       <!-- <i class="fa fa-key fa-spin 1a-3x fa-fw" style="padding: 2px;" aria-hidden="true"></i> ورود</button> <mat-spinner [diameter]="20"    *ngIf="commonService.loading==true"  style="   position: absolute; margin-right: 48%;" ></mat-spinner>  -->
-      <i class="fa fa-key " style="padding: 2px; cursor: pointer;" aria-hidden="true"></i> ورود
+      <i class="fa fa-key " style="padding: 2px; cursor: pointer;" aria-hidden="true"></i> Sign in 
+      &nbsp;
+      &nbsp;
+      &nbsp;
+
     </button>
 
 
     <br>
     <button disabled *ngIf="!connectToServer" mat-raised-button type="submit" color="primary">
       <!-- <i class="fa fa-key fa-spin 1a-3x fa-fw" style="padding: 2px;" aria-hidden="true"></i> ورود</button> <mat-spinner [diameter]="20"    *ngIf="commonService.loading==true"  style="   position: absolute; margin-right: 48%;" ></mat-spinner>  -->
-      <i class="fa fa-key " style="padding: 2px;" aria-hidden="true"></i> ورود
+      <i class="fa fa-key " style="padding: 2px;" aria-hidden="true"></i> Sign in
     </button>
 
 
@@ -55,17 +59,19 @@ wellcome  </h2>
   
 
   
-  
+<!--   
   <img class="iconFolad"  src="../assets/foolad.svg">
   <img class="logoIrisa "   src="../assets/IrisaPlus.svg">
-
+ -->
 
   <br>
+  <br>
+  
 
      
     
-          <p class="about">تمامی حقوق این سامانه برای شرکت فولاد مبارکه اصفهان محفوظ است</p>
-          <br>
+          <!-- <p class="about">تمامی حقوق این سامانه برای شرکت فولاد مبارکه اصفهان محفوظ است</p>
+          <br> -->
      
           <!-- <a  target="_blank" href="https://www.linkedin.com/in/mohammad-naghsh-40aa0360"> 
             <h5 class="about">Mohammad Naghsh</h5> </a> -->
