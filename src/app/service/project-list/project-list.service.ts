@@ -22,12 +22,12 @@ export class projectListService {
     return this.configService.post('SmaritProjects/getUserProjects');
   }
   
-  // public updateUsers(id,body):Observable<any>{
-  //   return this.configService.put('users/'+id,body);
-  // }
-  // public deleteUsers(id):Observable<any>{
-  //   return this.configService.delete('users/'+id);
-  // }
+  public updateAllprojectList(body):Observable<any>{
+    return this.configService.post('SmaritProjects/updateProject',body);
+  }
+  public deleteAllprojectList(id):Observable<any>{
+    return this.configService.delete('SmaritProjects/getUserProjects/'+id);
+  }
 
 }
 

@@ -7,6 +7,7 @@ export class CommonService {
   results: any[];
   loading: boolean;
   activeUser: any;
+  idForUpdate:any;
 //constructor(pu) { }
   showEventMessage(message, duration = 3000, type?) {
 

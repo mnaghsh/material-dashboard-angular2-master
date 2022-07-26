@@ -22,6 +22,7 @@ import { ProjectListComponent } from 'app/project-list/project-list.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { MatCardModule } from '@angular/material/card';
     MatPaginatorModule,
     MatTableModule,
     MatCardModule,
+    MatSortModule,
     MatTooltipModule,
     
   ],

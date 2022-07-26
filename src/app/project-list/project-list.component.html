@@ -1,25 +1,18 @@
 <div>
-  <mat-card class="titrCardDialog">
-    <h5 class="titr">
-      تعریف چک لیست و کاربرگ
-    </h5>
-  </mat-card>
-</div>
-<div>
   <br>
   <br>
   <!-- <div>  <app-loading *ngIf="commonService.loading==true"></app-loading> -->
   <!-- </div> -->
   <br>
-  <mat-form-field class="example-container " style="width: 100%!important;">
-    <input matInput (keyup)="applyFilter($event)" placeholder="جستجو">
+  <mat-form-field class="example-container " style=" padding-left: 1%; width: 100%!important;">
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search">
   </mat-form-field>
 
 </div>
 
-<div class="example-container ">
+<div class="">
 
-  <table matSort class="table table-responsive  table-bordered  table-striped  table-hover" mat-table #table
+  <table matSort class=" table table-responsive     table-striped  table-hover" mat-table #table
     [dataSource]="dataSource">
 
     <!--- Note that these columns can be defined in any order.
@@ -29,93 +22,28 @@
     <ng-container matColumnDef="number">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Row </th>
       <td mat-cell *matCellDef="let row;let index = index"> {{index+1}} </td>
-      <!-- <td mat-footer-cell *matFooterCellDef>
-        <p style="min-width:60px ;font-weight: bold;">Add New Row</p>
-      </td> -->
+      <td mat-footer-cell *matFooterCellDef>
+        <p style="min-width:160px ;font-weight: bold;">Add </p>
+      </td>
     </ng-container>
 
-    <ng-container matColumnDef="ID">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef>ID</th>
-      <td style="cursor: pointer ;" mat-cell *matCellDef="let element" (click)="selectRow(element)">
-        <mat-form-field *ngIf="edit" class="example-full-width" appearance="fill">
-          <input matInput *ngIf="edit" [placeholder]="" [(ngModel)]="element.ID" type="text">
-        </mat-form-field>
-        <p *ngIf="!edit">{{element.ID}}</p>
-      </td>
-      <!-- <td mat-footer-cell *matFooterCellDef>
-        <mat-form-field style="max-height: 52px;" class="example-full-width" appearance="fill">
-          <input matInput placeholder="ID" [(ngModel)]="newRowObj.ID" type="text">
-        </mat-form-field>
-      </td> -->
-    </ng-container>
-
-   
-    <ng-container matColumnDef="TITLE_SAPRO">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef>TITLE_SAPRO</th>
-      <td style="cursor: pointer ;" mat-cell *matCellDef="let element" (click)="selectRow(element)">
-        <mat-form-field *ngIf="edit" class="example-full-width" appearance="fill">
-          <input matInput *ngIf="edit" [placeholder]="" [(ngModel)]="element.TITLE_SAPRO" type="text">
-        </mat-form-field>
-        <p *ngIf="!edit">{{element.TITLE_SAPRO}}</p>
-      </td>
-      <!-- <td mat-footer-cell *matFooterCellDef>
-        <mat-form-field style="max-height: 52px;" class="example-full-width" appearance="fill">
-          <input matInput placeholder="ID" [(ngModel)]="newRowObj.TITLE_SAPRO" type="text">
-        </mat-form-field>
-      </td> -->
-    </ng-container>   <ng-container matColumnDef="LOGO_SAPRO">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef>LOGO_SAPRO</th>
-      <td style="cursor: pointer ;" mat-cell *matCellDef="let element" (click)="selectRow(element)">
-        <mat-form-field *ngIf="edit" class="example-full-width" appearance="fill">
-          <input matInput *ngIf="edit" [placeholder]="" [(ngModel)]="element.LOGO_SAPRO" type="text">
-        </mat-form-field>
-        <p *ngIf="!edit">{{element.LOGO_SAPRO}}</p>
-      </td>
-      <!-- <td mat-footer-cell *matFooterCellDef>
-        <mat-form-field style="max-height: 52px;" class="example-full-width" appearance="fill">
-          <input matInput placeholder="ID" [(ngModel)]="newRowObj.LOGO_SAPRO" type="text">
-        </mat-form-field>
-      </td> -->
-    </ng-container>   <ng-container matColumnDef="CREATE_DATE_SAPRO">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef>CREATE_DATE_SAPRO</th>
-      <td style="cursor: pointer ;" mat-cell *matCellDef="let element" (click)="selectRow(element)">
-        <mat-form-field *ngIf="edit" class="example-full-width" appearance="fill">
-          <input matInput *ngIf="edit" [placeholder]="" [(ngModel)]="element.CREATE_DATE_SAPRO" type="text">
-        </mat-form-field>
-        <p *ngIf="!edit">{{element.CREATE_DATE_SAPRO}}</p>
-      </td>
-      <!-- <td mat-footer-cell *matFooterCellDef>
-        <mat-form-field style="max-height: 52px;" class="example-full-width" appearance="fill">
-          <input matInput placeholder="ID" [(ngModel)]="newRowObj.CREATE_DATE_SAPRO" type="text">
-        </mat-form-field>
-      </td> -->
-    </ng-container>   <ng-container matColumnDef="LAST_UPDATE_DATE_SAPRO">
+    <ng-container matColumnDef="LAST_UPDATE_DATE_SAPRO">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>LAST_UPDATE_DATE_SAPRO</th>
       <td style="cursor: pointer ;" mat-cell *matCellDef="let element" (click)="selectRow(element)">
         <mat-form-field *ngIf="edit" class="example-full-width" appearance="fill">
           <input matInput *ngIf="edit" [placeholder]="" [(ngModel)]="element.LAST_UPDATE_DATE_SAPRO" type="text">
         </mat-form-field>
         <p *ngIf="!edit">{{element.LAST_UPDATE_DATE_SAPRO}}</p>
+
       </td>
-      <!-- <td mat-footer-cell *matFooterCellDef>
+      <td mat-footer-cell *matFooterCellDef>
         <mat-form-field style="max-height: 52px;" class="example-full-width" appearance="fill">
           <input matInput placeholder="ID" [(ngModel)]="newRowObj.LAST_UPDATE_DATE_SAPRO" type="text">
         </mat-form-field>
-      </td> -->
-    </ng-container>   <ng-container matColumnDef="COUNTRY_ID_SACOU">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef>COUNTRY_ID_SACOU</th>
-      <td style="cursor: pointer ;" mat-cell *matCellDef="let element" (click)="selectRow(element)">
-        <mat-form-field *ngIf="edit" class="example-full-width" appearance="fill">
-          <input matInput *ngIf="edit" [placeholder]="" [(ngModel)]="element.COUNTRY_ID_SACOU" type="text">
-        </mat-form-field>
-        <p *ngIf="!edit">{{element.COUNTRY_ID_SACOU}}</p>
       </td>
-      <!-- <td mat-footer-cell *matFooterCellDef>
-        <mat-form-field style="max-height: 52px;" class="example-full-width" appearance="fill">
-          <input matInput placeholder="COUNTRY_ID_SACOU" [(ngModel)]="newRowObj.COUNTRY_ID_SACOU" type="text">
-        </mat-form-field>
-      </td> -->
-    </ng-container>   <ng-container matColumnDef="STATUS_SAPRO">
+    </ng-container>
+
+    <ng-container matColumnDef="STATUS_SAPRO">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>STATUS_SAPRO</th>
       <td style="cursor: pointer ;" mat-cell *matCellDef="let element" (click)="selectRow(element)">
         <mat-form-field *ngIf="edit" class="example-full-width" appearance="fill">
@@ -123,12 +51,14 @@
         </mat-form-field>
         <p *ngIf="!edit">{{element.STATUS_SAPRO}}</p>
       </td>
-      <!-- <td mat-footer-cell *matFooterCellDef>
+      <td mat-footer-cell *matFooterCellDef>
         <mat-form-field style="max-height: 52px;" class="example-full-width" appearance="fill">
           <input matInput placeholder="STATUS_SAPRO" [(ngModel)]="newRowObj.STATUS_SAPRO" type="text">
         </mat-form-field>
-      </td> -->
-    </ng-container>   <ng-container matColumnDef="ADDRESS_SAPRO">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ADDRESS_SAPRO">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>ADDRESS_SAPRO</th>
       <td style="cursor: pointer ;" mat-cell *matCellDef="let element" (click)="selectRow(element)">
         <mat-form-field *ngIf="edit" class="example-full-width" appearance="fill">
@@ -136,12 +66,14 @@
         </mat-form-field>
         <p *ngIf="!edit">{{element.ADDRESS_SAPRO}}</p>
       </td>
-      <!-- <td mat-footer-cell *matFooterCellDef>
+      <td mat-footer-cell *matFooterCellDef>
         <mat-form-field style="max-height: 52px;" class="example-full-width" appearance="fill">
-          <input matInput placeholder="ADDRESS_SAPRO" [(ngModel)]="newRowObj.ADDRESS_SAPRO" type="text">
+          <input matInput placeholder="STATUS_SAPRO" [(ngModel)]="newRowObj.ADDRESS_SAPRO" type="text">
         </mat-form-field>
-      </td> -->
-    </ng-container>   <ng-container matColumnDef="countryName">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="countryName">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>countryName</th>
       <td style="cursor: pointer ;" mat-cell *matCellDef="let element" (click)="selectRow(element)">
         <mat-form-field *ngIf="edit" class="example-full-width" appearance="fill">
@@ -149,46 +81,45 @@
         </mat-form-field>
         <p *ngIf="!edit">{{element.countryName}}</p>
       </td>
-      <!-- <td mat-footer-cell *matFooterCellDef>
+      <td mat-footer-cell *matFooterCellDef>
         <mat-form-field style="max-height: 52px;" class="example-full-width" appearance="fill">
           <input matInput placeholder="ID" [(ngModel)]="newRowObj.countryName" type="text">
         </mat-form-field>
-      </td> -->
-    </ng-container>  
-     <ng-container matColumnDef="sensorNumber">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef>ID</th>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sensorNumber">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>sensorNumber</th>
       <td style="cursor: pointer ;" mat-cell *matCellDef="let element" (click)="selectRow(element)">
         <mat-form-field *ngIf="edit" class="example-full-width" appearance="fill">
           <input matInput *ngIf="edit" [placeholder]="" [(ngModel)]="element.sensorNumber" type="text">
         </mat-form-field>
         <p *ngIf="!edit">{{element.sensorNumber}}</p>
       </td>
-      <!-- <td mat-footer-cell *matFooterCellDef>
+      <td mat-footer-cell *matFooterCellDef>
         <mat-form-field style="max-height: 52px;" class="example-full-width" appearance="fill">
           <input matInput placeholder="sensorNumber" [(ngModel)]="newRowObj.sensorNumber" type="text">
         </mat-form-field>
-      </td> -->
-    </ng-container>  
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="process">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>عملیات </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>process </th>
       <td mat-cell *matCellDef="let row;let index = index">
         <i *ngIf="edit==false " class="fa fa-pencil-square-o iconEdit" (click)="editRow(row)"></i>
         <i *ngIf="edit==true && row.editable==true" class="fa fa-check-square-o iconOk" (click)="updateRow(row)"></i>
         <i *ngIf="edit==false " class="fa fa-trash iconDelete" (click)="deleteRow(row)"></i>
-        <i *ngIf="edit==false " class="fa fa-question-circle iconQuestion" (click)="addQuestions(row)"></i>
-        <i *ngIf="edit==false  && row.flgChkHecli==1" class="fa fa-check-circle iconOptions"
-          (click)="addOptions(row)"></i>
       </td>
-      <!-- <td mat-footer-cell *matFooterCellDef="let row;let index = index">
+      <td mat-footer-cell *matFooterCellDef="let row;let index = index">
         <i *ngIf="edit==false " class="fa fa-plus-square iconAdd" (click)="addRow()"></i>
-      </td> -->
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    <!-- <tr style="background-color: #06acea30;" mat-footer-row *matFooterRowDef="displayedColumns ; sticky: true"> -->
+    <tr style="background-color: rgb(192, 203, 238);" mat-footer-row *matFooterRowDef="displayedColumns ; sticky: true">
 
-    <!-- </tr> -->
+    </tr>
 
   </table>
 
