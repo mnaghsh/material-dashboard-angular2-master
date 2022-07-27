@@ -12,7 +12,7 @@
 
 <div class="">
 
-  <table matSort class=" table table-responsive     table-striped  table-hover" mat-table #table
+  <table matSort class="   table-responsive  table-bordered  table-striped  table-hover" mat-table #table
     [dataSource]="dataSource">
 
     <!--- Note that these columns can be defined in any order.
@@ -27,18 +27,18 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="LAST_UPDATE_DATE_SAPRO">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef>LAST_UPDATE_DATE_SAPRO</th>
+    <ng-container matColumnDef="TITLE_SAPRO">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>TITLE_SAPRO</th>
       <td style="cursor: pointer ;" mat-cell *matCellDef="let element" (click)="selectRow(element)">
         <mat-form-field *ngIf="edit" class="example-full-width" appearance="fill">
-          <input matInput *ngIf="edit" [placeholder]="" [(ngModel)]="element.LAST_UPDATE_DATE_SAPRO" type="text">
+          <input matInput *ngIf="edit" [placeholder]="" [(ngModel)]="element.TITLE_SAPRO" type="text">
         </mat-form-field>
-        <p *ngIf="!edit">{{element.LAST_UPDATE_DATE_SAPRO}}</p>
+        <p *ngIf="!edit">{{element.TITLE_SAPRO}}</p>
 
       </td>
       <td mat-footer-cell *matFooterCellDef>
         <mat-form-field style="max-height: 52px;" class="example-full-width" appearance="fill">
-          <input matInput placeholder="ID" [(ngModel)]="newRowObj.LAST_UPDATE_DATE_SAPRO" type="text">
+          <input matInput placeholder="TITLE_SAPRO" [(ngModel)]="newRowObj.TITLE_SAPRO" type="text">
         </mat-form-field>
       </td>
     </ng-container>
@@ -68,7 +68,7 @@
       </td>
       <td mat-footer-cell *matFooterCellDef>
         <mat-form-field style="max-height: 52px;" class="example-full-width" appearance="fill">
-          <input matInput placeholder="STATUS_SAPRO" [(ngModel)]="newRowObj.ADDRESS_SAPRO" type="text">
+          <input matInput placeholder="ADDRESS_SAPRO" [(ngModel)]="newRowObj.ADDRESS_SAPRO" type="text">
         </mat-form-field>
       </td>
     </ng-container>
@@ -83,7 +83,7 @@
       </td>
       <td mat-footer-cell *matFooterCellDef>
         <mat-form-field style="max-height: 52px;" class="example-full-width" appearance="fill">
-          <input matInput placeholder="ID" [(ngModel)]="newRowObj.countryName" type="text">
+          <input matInput placeholder="countryName" [(ngModel)]="newRowObj.countryName" type="text">
         </mat-form-field>
       </td>
     </ng-container>

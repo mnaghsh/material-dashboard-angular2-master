@@ -4,19 +4,24 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  isLoggedIn:boolean
-  token = "";
+  isLoggedIn: boolean;
+  token: string;
+
+
   constructor() {
+    this.token;
   }
-  public wasLoggedIn(){
-    this.isLoggedIn=true
+  public wasLoggedIn(recievedToken: string) {
+    this.token = recievedToken;
+    this.isLoggedIn = true
 
   }
-  public wasLoggedOut(){
-    this.isLoggedIn=false
+  public wasLoggedOut() {
+    this.isLoggedIn = false
     this.token = "";
+    //token = "";
   }
-  public loginStatus(){
+  public loginStatus() {
     return this.isLoggedIn;
   }
 }

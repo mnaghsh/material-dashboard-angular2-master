@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +9,14 @@ export class CommonService {
   loading: boolean;
   activeUser: any;
   idForUpdate:any;
-//constructor(pu) { }
+constructor(private snackBar: MatSnackBar,) { }
   showEventMessage(message, duration = 3000, type?) {
 
-    // this.snackBar.open(message, '', {
-    //   direction: 'rtl',
-    //   duration: duration,
-    //   panelClass: type ? type : 'background-color:red!important'
-    // });
+    this.snackBar.open(message, '', {
+      direction: 'ltr',
+      duration: duration,
+      panelClass: type ? type : 'background-color:red!important'
+    });
   }
   exportToExcel(tableId: string, name?: string) {
     let myDate = new Date().toLocaleDateString('fa-IR');

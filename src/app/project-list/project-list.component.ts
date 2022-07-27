@@ -1,8 +1,12 @@
+import { ConfirmComponent } from './../components/confirm/confirm.component';
+import { CommonService } from 'app/service/common.service';
+import { AuthenticationService } from 'app/service/authentication/authentication.service';
 import { projectListService } from './../service/project-list/project-list.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
@@ -18,27 +22,33 @@ export class ProjectListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<any>;
   projects: any;
-  constructor(public projectList: projectListService) {
+  constructor(
+    public projectList: projectListService,
+    public auth: AuthenticationService,
+    private dialog: MatDialog,
+    public commonService: CommonService,
+  ) {
 
     debugger
   }
 
   ngOnInit() {
-      this.newRowObj = {}
-    this.displayedColumns = ['number','LAST_UPDATE_DATE_SAPRO','STATUS_SAPRO', 'ADDRESS_SAPRO', 'countryName', 'sensorNumber'
-  , 'process' 
-  ];
+
+    this.newRowObj = {}
+    this.displayedColumns = ['number', 'TITLE_SAPRO', 'STATUS_SAPRO', 'ADDRESS_SAPRO', 'countryName', 'sensorNumber'
+      , 'process'
+    ];
 
     debugger;
     this.getUserProjects()
   }
-  getUserProjects() {
+  public getUserProjects() {
 
-    this.projectList.selectAllprojectList().subscribe(
+    this.projectList.selectProjectList().subscribe(
       (success) => {
         console.log('success', success.data)
-        this.projects=success.data
-       
+        this.projects = success.data
+
         this.dataSource = new MatTableDataSource(success.data);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -46,33 +56,27 @@ export class ProjectListComponent implements OnInit {
       }
     )
   }
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
   public addRow() {
 
     let object = {
-      "namChkHecli": this.newRowObj.namChkHecli,
-      "unitCehckListsHecli": this.newRowObj.unitCehckListsHecli,
-      "namDepartmentHecli": this.newRowObj.namDepartmentHecli,
-      "flgChkHecli":Number(this.newRowObj.flgChkHecli),
-      "createDate": new Date()
+      "LOGO_SAPRO": "dasgdaassg.jpg",
+      "TITLE_SAPRO": this.newRowObj.TITLE_SAPRO,
+      "STATUS_SAPRO": this.newRowObj.STATUS_SAPRO,
+      "ADDRESS_SAPRO": this.newRowObj.ADDRESS_SAPRO,
+      "COUNTRY_ID_SACOU": 1
+
     }
 
-    this.projectList.selectAllprojectList(object).subscribe((success) => {
-     // this.commonService.showEventMessage("ايجاد رديف با موفقيت انجام شد.", 3000, "green")
+    this.projectList.insertProjectList(object).subscribe((success) => {
+      // this.commonService.showEventMessage("ايجاد رديف با موفقيت انجام شد.", 3000, "green")
       this.getUserProjects();
       console.log('updateListOfcheckLists', success)
+      this.commonService.showEventMessage("Insert successful", 3000, "green")
+
       this.newRowObj = {};
     },
       (error) => {
-      //  this.commonService.showEventMessage("خطايي به وجود آمده يا ارتباط با سرور قطع مي باشد.", 3000, "green")
+        //  this.commonService.showEventMessage("خطايي به وجود آمده يا ارتباط با سرور قطع مي باشد.", 3000, "green")
       }
     )
   }
@@ -83,42 +87,76 @@ export class ProjectListComponent implements OnInit {
 
 
   }
-
   public updateRow(row) {
     this.edit = !this.edit;
-    this.projectList.updateAllprojectList(row).subscribe((success) => {
-     // this.commonService.showEventMessage("ويرايش رديف با موفقيت انجام شد.", 3000, "green")
+    row.projectID = row.ID
+    this.projectList.updateProjectList(row).subscribe((success) => {
+      this.commonService.showEventMessage("Update successful", 3000, "green")
       this.getUserProjects();
       console.log('updateListOfcheckLists', success)
         ;
 
     },
       (error) => {
-       // this.commonService.showEventMessage("خطايي به وجود آمده يا ارتباط با سرور قطع مي باشد.", 3000, "green")
+        // this.commonService.showEventMessage("خطايي به وجود آمده يا ارتباط با سرور قطع مي باشد.", 3000, "green")
       }
     )
 
   }
-
   public deleteRow(row) {
 
-    console.log('del', row)
-    this.projectList.deleteAllprojectList(row['eCheckListId']).subscribe(
-      (success) => {
 
-        this.getUserProjects();
-        //this.edit = !this.edit;
-      //  this.commonService.showEventMessage("حذف رديف با موفقيت انجام شد.", 3000, "red")
-        console.log('sucess', success)
-
-
-      },
-      (error) => {
-       // this.commonService.showEventMessage("خطايي به وجود آمده يا ارتباط با سرور قطع مي باشد.", 3000, "green")
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: "25%",
+      height: "25%",
+      data: {
+        text: " Are You Sure?",
       }
-    )
+    });
+    dialogRef.afterClosed().subscribe(
+      (data) => { 
+        if (data == 1) {
+
+
+
+          let object = {
+            "projectID": row.ID
+          }
+      
+          console.log('del', row)
+          this.projectList.deleteProjectList(object).subscribe(
+            (success) => {
+      
+              this.getUserProjects();
+              //this.edit = !this.edit;
+              //  this.commonService.showEventMessage("حذف رديف با موفقيت انجام شد.", 3000, "red")
+              this.commonService.showEventMessage("Delete successful", 3000, "green")
+      
+      
+      
+            },
+            (error) => {
+              // this.commonService.showEventMessage("خطايي به وجود آمده يا ارتباط با سرور قطع مي باشد.", 3000, "green")
+            }
+          )
+
+        }
+
+
+      })
+
+
+
+
+  }
+  public applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
- 
 
 }

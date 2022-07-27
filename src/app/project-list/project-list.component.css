@@ -94,3 +94,6 @@
   th.mat-sort-header-sorted {
     color: black;
   }
+  table{
+    text-align: center;
+  }

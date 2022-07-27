@@ -70,10 +70,13 @@ export class LoginComponent implements OnInit {
           this.commonService.loading = false;
           this.commonService.activeUser = (data)
           if (data.token) {
-            this.auth.wasLoggedIn();
-            this.auth.token = data.token
-            this.myRoute.navigate(['dashboard']);
             console.log('this.auth.token', this.auth.token)
+            this.auth.wasLoggedIn(data.token);
+            this.auth.token = data.token
+           
+            this.commonService.showEventMessage("Welcome")
+
+            this.myRoute.navigate(['dashboard']);
           }
         },
         (error) => {

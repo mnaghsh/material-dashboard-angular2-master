@@ -18,16 +18,18 @@ export class projectListService {
   //   return this.configService.get('users/'+HecliECheckListId);
   // }
   
-  public selectAllprojectList(body?):Observable<any>{
+  public selectProjectList(body?):Observable<any>{
     return this.configService.post('SmaritProjects/getUserProjects');
   }
   
-  public updateAllprojectList(body):Observable<any>{
+  public updateProjectList(body):Observable<any>{
     return this.configService.post('SmaritProjects/updateProject',body);
   }
-  public deleteAllprojectList(id):Observable<any>{
-    return this.configService.delete('SmaritProjects/getUserProjects/'+id);
+  public deleteProjectList(body):Observable<any>{
+    return this.configService.post('SmaritProjects/projectDelete',body);
   }
+  public insertProjectList(body):Observable<any>{
+    return this.configService.post('SmaritProjects/createProject',body);  }
 
 }
 
