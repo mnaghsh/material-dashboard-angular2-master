@@ -1,3 +1,4 @@
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +17,7 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import {MatDialogModule} from '@angular/material/dialog';
 
 
+
 @NgModule({
 
   imports: [
@@ -31,6 +33,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSliderModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatTooltipModule
 
   ],
   declarations: [
@@ -46,7 +49,9 @@ import {MatDialogModule} from '@angular/material/dialog';
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],
-  providers: [],
+  providers: [
+   
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

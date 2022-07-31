@@ -75,7 +75,7 @@
 
     <ng-container matColumnDef="countryName">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>countryName</th>
-      <td style="cursor: pointer ;" mat-cell *matCellDef="let element" (click)="selectCountry(element)">
+      <td style="cursor: pointer ;" mat-cell *matCellDef="let element" (click)="selectRow(element)">
         <mat-form-field *ngIf="edit" class="example-full-width" appearance="fill">
           <input matInput *ngIf="edit" [placeholder]="" [(ngModel)]="element.countryName" type="text">
         </mat-form-field>
@@ -115,8 +115,8 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr (click)="selectRow(row)" mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+    <tr  mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     <tr style="background-color: rgb(192, 203, 238);" mat-footer-row *matFooterRowDef="displayedColumns ; sticky: true">
 
     </tr>

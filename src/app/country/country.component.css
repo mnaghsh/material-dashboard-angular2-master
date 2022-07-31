@@ -1,0 +1,99 @@
+/* You can add global styles to this file, and also import other style files */
+.btnAdd{
+    margin-right: 1%!important;
+  }
+  .content{
+    margin: 1%!important;
+    margin-bottom: 4%!important;
+  }
+  button{
+    border-radius: 7px !important;
+    margin: 5px!important;
+  }
+  .iconEdit{
+    color:  #f514db;
+    padding: 5px;
+    
+  }
+  .iconDelete{
+    color: red;
+    padding: 5px;
+  }
+  
+  .iconOk{
+    color: green;
+    padding: 5px;
+  }
+  .iconAdd{
+    color: green;
+    padding: 5px;
+  }
+  
+  i{
+    cursor: pointer;
+    font-size: 18px !important;
+    padding-left: 10%!important;
+  }
+  input{
+    cursor: pointer; 
+  }
+  .example-table-container {
+    position: relative;
+    min-height: 200px;
+    max-height: 400px;
+    overflow: auto;
+  }
+  table {
+    width: 100%;
+    
+  }
+    /* Structure */
+.example-container {
+    position: relative;
+  }
+  
+  .example-table-container {
+    position: relative;
+    min-height: 200px;
+    max-height: 400px;
+    overflow: auto;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .example-loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .example-rate-limit-reached {
+    max-width: 360px;
+    text-align: center;
+  }
+  
+  /* Column Widths */
+  .mat-column-number,
+  .mat-column-state {
+    max-width: 64px;
+  }
+  
+  .mat-column-created {
+    max-width: 124px;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+  table{
+    text-align: center;
+  }

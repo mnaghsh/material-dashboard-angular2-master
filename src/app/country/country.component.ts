@@ -1,19 +1,19 @@
+import { CountryService } from './../service/country/country.service';
 import { ConfirmComponent } from './../components/confirm/confirm.component';
 import { CommonService } from 'app/service/common.service';
 import { AuthenticationService } from 'app/service/authentication/authentication.service';
 import { projectListService } from './../service/project-list/project-list.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatDialog } from '@angular/material/dialog';
-import { CountryComponent } from 'app/country/country.component';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-project-list',
-  templateUrl: './project-list.component.html',
-  styleUrls: ['./project-list.component.css']
+  templateUrl: './country.component.html',
+  styleUrls: ['./country.component.css']
 })
-export class ProjectListComponent implements OnInit {
+export class CountryComponent implements OnInit {
 
   displayedColumns: string[];
   newRowObj: any;
@@ -23,15 +23,16 @@ export class ProjectListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<any>;
   projects: any;
-  countryId: any;
-  countryName: any;
+  projectId: any;
   constructor(
-    public projectList: projectListService,
+    public countryService: CountryService,
+    @Optional() @Inject(MAT_DIALOG_DATA) public dialogData: any,
     public auth: AuthenticationService,
     private dialog: MatDialog,
+    public dialogRef: MatDialogRef<any>,
     public commonService: CommonService,
   ) {
-
+    this.projectId = dialogData.id
     debugger
   }
 
@@ -42,12 +43,14 @@ export class ProjectListComponent implements OnInit {
       , 'process'
     ];
 
-    debugger;
-    this.getUserProjects()
+    this.getCountry()
   }
-  public getUserProjects() {
+  public getCountry() {
+    let body = {
+      projectID: this.projectId,
+    }
 
-    this.projectList.selectProjectList().subscribe(
+    this.countryService.selectCountry(body).subscribe(
       (success) => {
         console.log('success', success.data)
         this.projects = success.data
@@ -70,9 +73,9 @@ export class ProjectListComponent implements OnInit {
 
     }
 
-    this.projectList.insertProjectList(object).subscribe((success) => {
+    this.countryService.insertCountry(object).subscribe((success) => {
       // this.commonService.showEventMessage("ايجاد رديف با موفقيت انجام شد.", 3000, "green")
-      this.getUserProjects();
+      this.getCountry();
       console.log('updateListOfcheckLists', success)
       this.commonService.showEventMessage("Insert successful", 3000, "green")
 
@@ -93,9 +96,9 @@ export class ProjectListComponent implements OnInit {
   public updateRow(row) {
     this.edit = !this.edit;
     row.projectID = row.ID
-    this.projectList.updateProjectList(row).subscribe((success) => {
+    this.countryService.updateCountry(row).subscribe((success) => {
       this.commonService.showEventMessage("Update successful", 3000, "green")
-      this.getUserProjects();
+      this.getCountry();
       console.log('updateListOfcheckLists', success)
         ;
 
@@ -117,7 +120,7 @@ export class ProjectListComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(
-      (data) => { 
+      (data) => {
         if (data == 1) {
 
 
@@ -125,18 +128,18 @@ export class ProjectListComponent implements OnInit {
           let object = {
             "projectID": row.ID
           }
-      
+
           console.log('del', row)
-          this.projectList.deleteProjectList(object).subscribe(
+          this.countryService.deleteCountry(object).subscribe(
             (success) => {
-      
-              this.getUserProjects();
+
+              this.getCountry();
               //this.edit = !this.edit;
               //  this.commonService.showEventMessage("حذف رديف با موفقيت انجام شد.", 3000, "red")
               this.commonService.showEventMessage("Delete successful", 3000, "green")
-      
-      
-      
+
+
+
             },
             (error) => {
               // this.commonService.showEventMessage("خطايي به وجود آمده يا ارتباط با سرور قطع مي باشد.", 3000, "green")
@@ -160,25 +163,11 @@ export class ProjectListComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  selectCountry(row) {
-    console.log('row',row)
-    const dialogRef = this.dialog.open(CountryComponent, {
-      width: "80%",
-      height: "80%",
-     // direction: "rtl",
-      data: {
-        id: row.ID,
-        //  checkListName: row.desChkHecli,
-      }
-    });
-    dialogRef.afterClosed().subscribe(
-      (data) => {
-
-        this.countryId = data.countryId;
-        this.countryName = data.countryName;
-       
-      }
-    )
+  selectRow(row) {
+    console.log(row)
+    if (!this.edit) {
+      this.dialogRef.close(row)
+    }
 
   }
 

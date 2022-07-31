@@ -23,6 +23,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatSortModule } from '@angular/material/sort';
+import { CountryComponent } from 'app/country/country.component';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -45,6 +47,7 @@ import { MatSortModule } from '@angular/material/sort';
     
   ],
   declarations: [
+    CountryComponent,
     DashboardComponent,
     UserProfileComponent,
     TableListComponent,
@@ -54,7 +57,12 @@ import { MatSortModule } from '@angular/material/sort';
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
-  ]
+  ],
+
+
+  providers: [
+   
+  ],
 })
 
 export class AdminLayoutModule {}
